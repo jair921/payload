@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Domain\Payload\Actions\StorePayloadAction;
+use App\Domain\Payload\DTO\PayloadData;
 use App\Domain\Payload\Exceptions\StorePayloadException;
 use App\Location;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as ResponseCodes;
 use Illuminate\Support\Facades\Response;
@@ -13,23 +16,20 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class PayloadController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request): LengthAwarePaginator
     {
-        $locations = QueryBuilder::for(Location::class)
+        return QueryBuilder::for(Location::class)
             ->allowedFilters([
                 AllowedFilter::scope('created_at_between'),
             ])
             ->allowedSorts(['lat', 'lng', 'from', 'origin', 'address', 'created_at'])
             ->paginate(50);
-
-        return $locations;
     }
 
-    public function store(Request $request, StorePayloadAction $storePayloadAction)
+    public function store(Request $request, StorePayloadAction $storePayloadAction): JsonResponse
     {
-       $data = file_get_contents('php://input');
         try {
-            $created = ($storePayloadAction)($data);
+            $created = $storePayloadAction->__invoke(PayloadData::fromRequest($request));
         }catch (StorePayloadException $storePayloadException){
             return Response::json(['message' => $storePayloadException->getMessage()], ResponseCodes::HTTP_UNPROCESSABLE_ENTITY);
         }

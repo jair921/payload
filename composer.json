@@ -13,6 +13,7 @@
         "fideloper/proxy": "^4.4",
         "laravel/framework": "^6.20",
         "laravel/tinker": "^2.5",
+        "spatie/data-transfer-object": "^2.8",
         "spatie/laravel-query-builder": "^3.3"
     },
     "require-dev": {

@@ -2,6 +2,7 @@
 
 namespace App\Domain\Payload\Actions;
 
+use App\Domain\Payload\DTO\PayloadData;
 use App\Location;
 
 class StorePayloadAction
@@ -14,9 +15,9 @@ class StorePayloadAction
         $this->payloadToArrayAction = $payloadToArrayAction;
     }
 
-    public function __invoke($data)
+    public function __invoke(PayloadData  $payloadData)
     {
-        $location = ($this->payloadToArrayAction)($data);
+        $location = $this->payloadToArrayAction->__invoke($payloadData->data);
 
         return Location::create($location);
     }

@@ -13,7 +13,7 @@ return [
             'client_secret',
         ],
         'query_params' => [],
-        'oauth' => true,
+        'oauth' => false,
         'description' => 'Generate user token. With the required data, you must consume the endpoint. With the generated token, you can later make requests by sending that same token as an authentication header "Authorization: Bearer {TOKEN}"',
     ],
     [

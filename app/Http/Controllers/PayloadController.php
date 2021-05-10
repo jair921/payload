@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Domain\Payload\Actions\StorePayloadAction;
+use App\Domain\Payload\Actions\LoadPayloadAction;
 use App\Domain\Payload\DTO\PayloadData;
 use App\Domain\Payload\Exceptions\StorePayloadException;
 use App\Location;
@@ -26,10 +26,10 @@ class PayloadController extends Controller
             ->paginate(50);
     }
 
-    public function store(Request $request, StorePayloadAction $storePayloadAction): JsonResponse
+    public function store(Request $request, LoadPayloadAction $loadPayloadAction): JsonResponse
     {
         try {
-            $created = $storePayloadAction->__invoke(PayloadData::fromRequest($request));
+            $created = $loadPayloadAction->__invoke(PayloadData::fromRequest($request));
         }catch (StorePayloadException $storePayloadException){
             return Response::json(['message' => $storePayloadException->getMessage()], ResponseCodes::HTTP_UNPROCESSABLE_ENTITY);
         }

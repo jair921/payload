@@ -15,9 +15,9 @@ class StorePayloadAction
         $this->payloadToArrayAction = $payloadToArrayAction;
     }
 
-    public function __invoke(PayloadData  $payloadData)
+    public function __invoke(string  $data)
     {
-        $location = $this->payloadToArrayAction->__invoke($payloadData->data);
+        $location = $this->payloadToArrayAction->__invoke($data);
 
         return Location::create($location);
     }

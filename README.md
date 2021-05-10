@@ -1,5 +1,7 @@
 # Iniciando con el API
 
+## Instalación
+
 ## Usuarios
 
 Para interactuar con las funcionalidades debes tener un usuario registrado y autenticado.

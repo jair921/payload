@@ -2,6 +2,21 @@
 
 return [
     [
+        'url' => '/oauth/token ',
+        'method' => 'POST',
+        'params' => [
+            'grant_type',
+            'username',
+            'password',
+            'scope',
+            'client_id',
+            'client_secret',
+        ],
+        'query_params' => [],
+        'oauth' => true,
+        'description' => 'Generate user token. With the required data, you must consume the endpoint. With the generated token, you can later make requests by sending that same token as an authentication header "Authorization: Bearer {TOKEN}"',
+    ],
+    [
         'url' => '/api/user',
         'method' => 'GET',
         'params' => [],

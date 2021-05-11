@@ -107,7 +107,7 @@ Estas credenciales se requerirán en el proceso de autenticación.
 
 ### Generar Token de Usuario
 
-La autenticación de usuarios sigue el estandar definido de autenticación [Oauth 2.0](https://tools.ietf.org/html/rfc6749).
+La autenticación de usuarios sigue el estándar definido de autenticación [Oauth 2.0](https://tools.ietf.org/html/rfc6749).
 
 Para la autenticación de un usuario se debe usar el `grant_type` tipo `password`
 
@@ -119,6 +119,17 @@ Con el token generado, después puedes hacer peticiones enviando ese mismo token
 
 ```
 Authorization: Bearer {TOKEN}
+```
+
+Donde {TOKEN} es retornado por el recurso.
+
+### Indice de recursos
+
+> No requiere autorización (Bearer {TOKEN})
+
+
+```
+GET /api/index
 ```
 
 # Configuración (supuestos)

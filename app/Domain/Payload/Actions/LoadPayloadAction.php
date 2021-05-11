@@ -6,11 +6,19 @@ namespace App\Domain\Payload\Actions;
 
 use App\Domain\Payload\DTO\PayloadData;
 
+/**
+ * Class LoadPayloadAction
+ * @package App\Domain\Payload\Actions
+ */
 class LoadPayloadAction
 {
 
     private StorePayloadAction $storePayloadAction;
 
+    /**
+     * LoadPayloadAction constructor.
+     * @param StorePayloadAction $storePayloadAction
+     */
     public function __construct(StorePayloadAction $storePayloadAction)
     {
         $this->storePayloadAction = $storePayloadAction;

@@ -265,3 +265,22 @@ localization[1]: "20226c6174223d3e2d33332e33393139392c226c6e67223d3e2d37302e3535
 6d617274696e20383430302c20436f6c696e612c204368696c6522"
 ```
 # Postman
+
+En la carpeta `Postman` se incluyen 2 archivos para cargar el proyecto y realizar pruebas al api.
+
+`Payload.postman_collection` usar para importar proyecto.
+`dev.postman_environment` usar para importar el entorno
+
+# Estructura básica de directorios
+
+- `routes` 
+
+Aquí se almacenan las rutas http, el api usa el archivo `api.php`
+
+- `app`
+
+Aquí se almacenan los archivos de la aplicación que contienen la lógica.
+
+`Domain` => Contiene los dominios de aplicación
+
+`Http` => Contiene todos los recursos Http [Controladores, resources, FormRequest]

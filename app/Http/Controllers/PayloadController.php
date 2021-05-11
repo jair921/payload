@@ -14,10 +14,19 @@ use Illuminate\Support\Facades\Response;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
+/**
+ * Class PayloadController
+ * @package App\Http\Controllers
+ */
 class PayloadController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return LengthAwarePaginator
+     */
     public function index(Request $request): LengthAwarePaginator
     {
+        // Return list paginate of localizations
         return QueryBuilder::for(Location::class)
             ->allowedFilters([
                 AllowedFilter::scope('created_at_between'),
@@ -26,14 +35,22 @@ class PayloadController extends Controller
             ->paginate(50);
     }
 
+    /**
+     * @param Request $request
+     * @param LoadPayloadAction $loadPayloadAction
+     * @return JsonResponse
+     */
     public function store(Request $request, LoadPayloadAction $loadPayloadAction): JsonResponse
     {
         try {
+            // Proces request for save payload
             $created = $loadPayloadAction->__invoke(PayloadData::fromRequest($request));
         }catch (StorePayloadException $storePayloadException){
+            // If fail response message of exception
             return Response::json(['message' => $storePayloadException->getMessage()], ResponseCodes::HTTP_UNPROCESSABLE_ENTITY);
         }
 
+        // If create response
         return $created ? Response::json(['message' => trans('payload.store_success')], ResponseCodes::HTTP_CREATED)
         : Response::json(['message' => trans('payload.store_fail')], ResponseCodes::HTTP_UNPROCESSABLE_ENTITY);
     }

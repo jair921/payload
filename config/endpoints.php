@@ -30,7 +30,7 @@ return [
         'params' => [],
         'query_params' => [],
         'oauth' => true,
-        'description' => 'Save payload. Send hexadecimal in the content of the request',
+        'description' => 'Save payload. Send hexadecimal in the content of the request. View README.md',
     ],
     [
         'url' => '/api/payload',

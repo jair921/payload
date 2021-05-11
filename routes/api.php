@@ -15,15 +15,15 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/index', [IndexController::class, 'index'])->name('index.index');
+Route::get('/index', [IndexController::class, 'index'])->name('index.index'); // Index endpoints
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('user', function (Request $request) {
         return $request->user();
-    });
+    }); // Current user
 
     Route::group(['prefix' => 'payload', 'as' => 'payload.'], function () {
-        Route::get('/', [PayloadController::class, 'index'])->name('index');
-        Route::post('/', [PayloadController::class, 'store'])->name('store');
+        Route::get('/', [PayloadController::class, 'index'])->name('index'); // List localizations
+        Route::post('/', [PayloadController::class, 'store'])->name('store'); // Store localizations
     });
 });
